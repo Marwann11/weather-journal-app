@@ -1,111 +1,130 @@
 body{
-    background: #fffff8;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(0deg, rgb(66, 117, 134) 40%, rgb(66, 40, 78) 100%);
+    font-family: 'Balsamiq Sans', cursive;
 }
 
 #app{
     display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height:100vh;
-    background: #f23557;
-    color: #f0d43a;
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-columns: repeat(1,1fr);
+    height:98vh;
     justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+    gap: 1em;
+    font-size: 16pt;
 }
 
 .holder{
-
+    display: flex;
 }
 
 .entry{
-    background: rgba(59, 74, 107, .4);
+    background: linear-gradient(0deg, rgb(24, 106, 121) 20%, rgb(56,68,98) 100%);
+    border: whitesmoke 4px solid;
+    border-radius: 10px;
 }
 
 #entryHolder{
-
+    color: rgba(221, 218, 32, 0.822);
+    font-size: 140%;
+    margin-left: 20px;
 }
 
-#date{
-
-}
-
-#temp{
-
-}
-
-#content{
-
-}
 
 .headline {
-
+    background-image: url(https://media4.giphy.com/media/xUPGcym3AMImsZxSus/giphy.gif?cid=ecf05e47vzxkp5uyc79x35lb92surxit9k8eudyyvzmhrunt&rid=giphy.gif&ct=g);
+    border: whitesmoke 5px solid;
+    border-radius: 10px;
+    color: rgb(55, 133, 197);
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
 }
 .title{
+    color: whitesmoke;
+    text-align: center;
+    font-size: 20pt;
+    padding: 0.5em
+}
+.btn__adj {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
 
+#generate {
+    padding: 0.3em;
+    font-size: 130%;
+    border-radius: 200px;
+}
+
+#generate:hover {
+    cursor: pointer;
+    background-color: black;
+    color: whitesmoke;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label{
     display:block;
-    font-size: 27px;
+    font-size: 20pt;
+    color: mintcream;
 }
 
 input{
+    background-color: rgb(197, 188, 188);
+    color: black;
     display:block;
-    height: 60px;
-    width: 320px;
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
+    height: 25%;
+    width: 20%;
+    font-size: 20pt;
+    border: solid 3px black;
+    border-radius: 10px;
+    padding: 0.5em;
 }
 
 button{
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
-    color: #f0d43a;
-    font-size: 26px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
+    background-color: snow;
+    width: 15%;
+    font-size: 20pt;
+    border: solid 3px black;
+    border-radius: 12px;
     box-shadow: 2px 4px 5px #444;
 }
+
 h1{
     font-size: 36px;
 }
 
 textarea{
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+    background-color: rgb(197, 188, 188);
+    color: black;
+    width: 95%;
+    font-size: 22pt;
+    border: black 3px solid;
+    border-radius: 10px;
+    padding: 0.7em;
 }
 /* Reset style for HTML element on active to have no border*/
+/*
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
     outline: none;
 }
+*/
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
+    color: black; 
 
 } 
   
 :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
+    color: black; 
 
 } 
   
 ::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
+    color:black; 
 
 } 

@@ -5,7 +5,7 @@ const apiKey = '&appid=11c7cee1165ceb404637d6f6777b30a5';
 
 // real-time date function
 let t = new Date;
-let newDate = `${t.getMonth()}.${t.getDate()}.${t.getFullYear()}`;
+let newDate = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()}`;
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', getPostUpdate)
@@ -71,11 +71,12 @@ const useData = async () => {
 
   try {
     const allData = await response.json();
+    // converting to fahrenheit 
+    const f = ((allData[0].temperature - 273.15)*9/5+32).toFixed(2);
     // update UI
     document.getElementById('date').innerHTML = `Date: ${allData[0].date}`; // date value from post req.body object
-    document.getElementById('temp').innerHTML = `Temperature: ${allData[0].temperature}`; // temperature value
+    document.getElementById('temp').innerHTML = `Temperature: ${f} F&deg`; // temperature value
     document.getElementById('content').innerHTML = `Feeling: ${allData[0].userResponse}`; // userInput value
-
   } catch(error) {
     console.log('error', error);
   }
