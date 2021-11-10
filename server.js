@@ -52,4 +52,3 @@ app.post('/weather', (req,res) => {
   weatherData.splice(0,0,newEntry); // add every new entry as the zero index in our object
   console.log(weatherData);
 })
-
