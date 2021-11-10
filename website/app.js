@@ -12,19 +12,25 @@ document.getElementById('generate').addEventListener('click', getPostUpdate)
 
 /* Function called by event listener */
 function getPostUpdate(evt) {
-  let zipCode = document.getElementById('zip').value;
-  let feelings = document.getElementById('feelings').value;
+  let zipCode = document.getElementById('zip').value; // the user entered zipCode
+  let feelings = document.getElementById('feelings').value; // user Input
 
-  getData(baseUrl,zipCode,apiKey)
+  getData(baseUrl,zipCode,apiKey) // get data with fetch from the webApi
+
+  // post data to the weather object in server
   .then(function(data) {
     console.log(data); // for debugging
 
     // post request function that add returned data to our project endpoint in serverSide
-    postData('/', {temperature: data.main.temp, date: newDate, userResponse:feelings});
+    postData('/weather', {temperature: data.main.temp, date: newDate, userResponse:feelings});
   })
-  /*.then(
-    useData()
-  )*/
+
+  // update UI using weather object
+  .then(function() {
+    useData();
+  })
+
+  
 }
 
 /* Function to GET Web API Data*/
@@ -66,9 +72,9 @@ const useData = async () => {
   try {
     const allData = await response.json();
     // update UI
-    document.getElementById('date').innerHTML = allData[0].date; // date value from post req.body object
-    document.getElementById('temp').innerHTML = allData[0].temperature; // temperature value
-    document.getElementById('content').innerHTML = allData[0].userResponse; // userInput value
+    document.getElementById('date').innerHTML = `Date: ${allData[0].date}`; // date value from post req.body object
+    document.getElementById('temp').innerHTML = `Temperature: ${allData[0].temperature}`; // temperature value
+    document.getElementById('content').innerHTML = `Feeling: ${allData[0].userResponse}`; // userInput value
 
   } catch(error) {
     console.log('error', error);
