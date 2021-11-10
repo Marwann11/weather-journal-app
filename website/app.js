@@ -19,8 +19,6 @@ function getPostUpdate(evt) {
 
   // post data to the weather object in server
   .then(function(data) {
-    console.log(data); // for debugging
-
     // post request function that add returned data to our project endpoint in serverSide
     postData('/weather', {temperature: data.main.temp, date: newDate, userResponse:feelings});
   })
@@ -33,7 +31,7 @@ function getPostUpdate(evt) {
   
 }
 
-/* Function to GET Web API Data*/
+/*Function to GET Web API Data*/
 const getData = async (baseUrl,zipCode,key) => {
   const request = await fetch(baseUrl+zipCode+key) // the format to get apiData
 

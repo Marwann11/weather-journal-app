@@ -38,7 +38,6 @@ app.get('/all', getProjectData)
 // Callback function to complete GET '/all'
 function getProjectData(req,res) {
   res.send(weatherData);
-  console.log('get is done')
 };
 
 // Post Route
@@ -50,5 +49,4 @@ app.post('/weather', (req,res) => {
     userResponse: data.userResponse
   };
   weatherData.splice(0,0,newEntry); // add every new entry as the zero index in our object
-  console.log(weatherData);
 })
