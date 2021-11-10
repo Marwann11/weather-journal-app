@@ -1,7 +1,11 @@
 // base URL for OpenWeatherMap API
-const baseUrl = 'api.openweathermap.org/data/2.5/weather?zip='
+const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?zip='
 // Personal API Key for OpenWeatherMap API
 const apiKey = '&appid=11c7cee1165ceb404637d6f6777b30a5';
+
+// real-time date function
+let t = new Date;
+let newDate = `${t.getMonth()}.${t.getDate()}.${t.getFullYear()}`;
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', getPostUpdate)
@@ -15,13 +19,19 @@ function getPostUpdate(evt) {
   .then(function(data) {
     console.log(data); // for debugging
 
+    // post request function that add returned data to our project endpoint in serverSide
+    postData('/', {temperature: data.main.temp, date: newDate, userResponse:feelings});
   })
+  /*.then(
+    useData()
+  )*/
 }
 
 /* Function to GET Web API Data*/
 const getData = async (baseUrl,zipCode,key) => {
-  const request = await fetch(`${baseUrl}${zipCode}${key}`); // the format to get apiData
+  const request = await fetch(baseUrl+zipCode+key) // the format to get apiData
 
+  // try in case of success(resolve), catch in case of failure(reject)
   try {
     const data = await request.json();
     return data; // return data so we can use in our post request
@@ -45,8 +55,22 @@ const postData = async (url = '', data = {}) => {
     const newData = await response.json() 
     return newData;
   } catch(error) {
-    console.log('error',error); // appropriately handle the error
+    console.log('error',error);
   }
 }
 
-/* Function to GET Project Data and update UI */
+/* Function to GET Project Data*/
+const useData = async () => {
+  const response = await fetch('/all') // serverSide route which is set to respond with weatherData object
+
+  try {
+    const allData = await response.json();
+    // update UI
+    document.getElementById('date').innerHTML = allData[0].date; // date value from post req.body object
+    document.getElementById('temp').innerHTML = allData[0].temperature; // temperature value
+    document.getElementById('content').innerHTML = allData[0].userResponse; // userInput value
+
+  } catch(error) {
+    console.log('error', error);
+  }
+}
