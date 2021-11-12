@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-const weatherData = [];
+const weatherData = {};
 
 // Express to run server and routes
 const express = require('express');
@@ -48,5 +48,6 @@ app.post('/weather', (req,res) => {
     date: data.date,
     userResponse: data.userResponse
   };
-  weatherData.splice(0,0,newEntry); // add every new entry as the zero index in our object
+  /*weatherData.push(newEntry);*/ // add every new entry as the zero index in our object
+  /*console.log(weatherData);*/
 })
