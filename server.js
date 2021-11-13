@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-const weatherData = {};
+weatherData = {};
 
 // Express to run server and routes
 const express = require('express');
@@ -42,12 +42,6 @@ function getProjectData(req,res) {
 
 // Post Route
 app.post('/weather', (req,res) => {
-  let data = req.body;
-  const newEntry = {
-    temperature: data.temperature,
-    date: data.date,
-    userResponse: data.userResponse
-  };
-  /*weatherData.push(newEntry);*/ // add every new entry as the zero index in our object
-  /*console.log(weatherData);*/
+  weatherData = req.body; // assign our posted data JSON as our app endPoint
+  res.send(weatherData); // sends it back to clientSide as returned promise in postData function
 })

@@ -15,21 +15,17 @@ function getPostUpdate(evt) {
   let zipCode = document.getElementById('zip').value; // the user entered zipCode
   let feelings = document.getElementById('feelings').value; // user Input
 
-  getData(baseUrl,zipCode,apiKey) // get data with fetch from the webApi
+  getData(baseUrl,zipCode,apiKey) //first get data with fetch from the webApi
 
-  // post data to the weather object in server
-  .then(function(data) {
-    console.log(data)
+  //second post data to the weather object in server
+  .then(async (data) => {
     // post request function that add returned data to our project endpoint in serverSide
-    postData('/weather', {temperature: data.main.temp, date: newDate, userResponse:feelings});
+    await postData('/weather', {temperature: data.main.temp, date: newDate, userResponse:feelings});
   })
-
-  // update UI using weather object
-  .then(function() {
+  //third update UI
+  .then( () => {
     useData();
   })
-
-  
 }
 
 /*Function to GET Web API Data*/
@@ -57,7 +53,7 @@ const postData = async (url = '', data = {}) => {
   })
 
   try {
-    const newData = await response.json() 
+    const newData = await response.json();
     return newData;
   } catch(error) {
     console.log('error',error);
@@ -70,8 +66,7 @@ const useData = async () => {
 
   try {
     const allData = await response.json();
-    // converting to fahrenheit 
-    /*const f = ((allData[0].temperature - 273.15)*9/5+32).toFixed(2);*/
+    
     // update UI
     document.getElementById('date').innerHTML = `Date: ${allData.date}`; // date value from post req.body object
     document.getElementById('temp').innerHTML = `Temperature: ${allData.temperature} F&deg`; // temperature value
